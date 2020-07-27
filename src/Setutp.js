@@ -4,7 +4,7 @@ import Pillar from "./Pillar";
 import {Scene, WebGLRenderer, Color, PerspectiveCamera} from 'three';
 
 export default class Setup {
-    static StartGame({gameObjects: gameOBjects, width: width, height: height}) {
+    static SetMesh({gameObjects: gameOBjects, width: width, height: height}) {
         let player = new Player()
         let terrain = new Terrain(width, height)
         let pillar = new Pillar(10, 1000, 50)
