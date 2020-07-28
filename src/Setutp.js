@@ -13,9 +13,9 @@ export default class Setup {
         gameOBjects.push(pillar)
     }
     static Camera(width, height) {
-        let camera = new PerspectiveCamera(45, width / height, 0.1, 10000 )
+        let camera = new PerspectiveCamera(30, width / height, 0.1, 10000 )
         camera.position.x = -110.83
-        camera.position.y = 30.99
+        camera.position.y = 50.99
         camera.position.z = 35.98
         return camera
     }

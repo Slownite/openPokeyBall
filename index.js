@@ -13,7 +13,9 @@ function init() {
 }
 function animate() {
     requestAnimationFrame(animate)
-    camera.lookAt(gameObjects[0].mesh.position)
+    camera.lookAt(gameObjects[1].mesh.position)
+    gameObjects[1].mesh.position.y +=0.1
+    camera.position.y +=0.1
     renderer.render(scene, camera)
 
 }
