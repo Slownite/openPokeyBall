@@ -1,7 +1,8 @@
 import Player from "./Player";
 import Terrain from "./terrain";
 import Pillar from "./Pillar";
-import {Scene, WebGLRenderer, Color, PerspectiveCamera} from 'three';
+import {Scene, WebGLRenderer, Color} from 'three';
+import Camera from "./Camera";
 
 export default class Setup {
     static SetMesh({gameObjects: gameOBjects, width: width, height: height}) {
@@ -13,11 +14,7 @@ export default class Setup {
         gameOBjects.push(pillar)
     }
     static Camera(width, height) {
-        let camera = new PerspectiveCamera(30, width / height, 0.1, 10000 )
-        camera.position.x = -110.83
-        camera.position.y = 50.99
-        camera.position.z = 35.98
-        return camera
+        return new Camera(width, height)
     }
     static Renderer(width, height) {
         let renderer = new WebGLRenderer({antialias: true})
