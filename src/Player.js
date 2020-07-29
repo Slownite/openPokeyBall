@@ -12,13 +12,14 @@ export default class Player {
             down :new Raycaster(this.mesh.position, new Vector3(0, -1, 0)),
             face: new Raycaster(this.mesh.position, new Vector3(1,0,0))
         }
-        this.force = 20
+        this.force = 100
         this.block = true
     }
     GetPosition() {
         return this.mesh.position
     }
     Move({strength, gravity, environment, click}) {
+
         // if (!click && !this.block ) {
         //     this.block = true
         //     return
@@ -28,20 +29,18 @@ export default class Player {
         //     this.mesh.position.y += - this.force - gravity
         //     return
         // }
-        if (!this.RaycastDown(environment[0])) {
-
-            this.mesh.position.y += strength * this.force - gravity
+        if (!this.RaycastDown(environment[0], 5) && this.mesh.position.y > 5) {
+            this.mesh.position.y += strength * this.force - gravity 
             return
         }
-        this.mesh.position.y = environment[0].position.y + 5
+        this.mesh.position.y = 5
 
     }
-    RaycastDown(other) {
+    RaycastDown(other, number) {
         const res = this.raycasters.down.intersectObject(other)
         if (res.length === 0)
             return false
-        console.log(res[0].distance)
-        return res[0].distance <= 5
+        return res[0].distance <= number
     }
     RaycastUp(others) {
         const res = this.raycasters.down.intersectObjects(others)
