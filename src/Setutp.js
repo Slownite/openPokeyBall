@@ -5,13 +5,13 @@ import {Scene, WebGLRenderer, Color} from 'three';
 import Camera from "./Camera";
 
 export default class Setup {
-    static SetMesh({gameObjects: gameOBjects, width: width, height: height}) {
+    static SetMesh(gameObjects, width, height) {
         let player = new Player()
         let terrain = new Terrain(width, height)
         let pillar = new Pillar(10, 1000, 50)
-        gameOBjects.push(terrain)
-        gameOBjects.push(player)
-        gameOBjects.push(pillar)
+        gameObjects.terrain = terrain
+        gameObjects.player = player
+        gameObjects.pillar = pillar
     }
     static Camera(width, height) {
         return new Camera(width, height)

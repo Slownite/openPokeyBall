@@ -1,4 +1,4 @@
-import { Geometry, PlaneGeometry, MeshNormalMaterial, Mesh, MeshBasicMaterial, DoubleSide } from "three"
+import { Geometry, PlaneGeometry, Mesh, MeshBasicMaterial, DoubleSide } from "three"
 
 export default class Terrain {
     constructor(width, height) {
