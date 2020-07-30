@@ -15,18 +15,18 @@ function init() {
     control = new Control(height)
     for (const key in gameObjects) {
         if(key === "pillar") {
-            gameObjects[key].forEach(element=> scene.add(element.mesh))
-            environment.push(gameObjects[key].forEach(element => element.mesh))
+            gameObjects[key].column.forEach(element=> scene.add(element.mesh))
+            gameObjects[key].breakBlocks.forEach(element => {
+                environment.push(element.mesh)
+            })
             continue
         }
         scene.add(gameObjects[key].mesh)
         environment.push(gameObjects[key].mesh)
     }
-    environment.splice(1, 1)
+    environment.splice(0, 2)
     camera.LookAt(gameObjects.player.GetPosition())
-    control.mouseDown()
-    control.mouseUp()
-    control.mouseMove()
+   
     
 }
 let delta = {

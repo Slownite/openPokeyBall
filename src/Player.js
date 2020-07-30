@@ -7,36 +7,47 @@ export default class Player {
         this.mesh = new Mesh(geo, material)
         this.mesh.position.y = 30
         this.mesh.position.x = 30
-        this.raycasters = {
-            up: new Raycaster(this.mesh.position, new Vector3(0, 1, 0)),
-            down :new Raycaster(this.mesh.position, new Vector3(0, -1, 0)),
-            face: new Raycaster(this.mesh.position, new Vector3(1,0,0))
-        }
+        this.raycaster = new Raycaster(this.mesh.position, new Vector3(0, 1, 0))
         this.force = 100
-        this.block = true
+        this.block = false
     }
     GetPosition() {
         return this.mesh.position
     }
-    Move({strength, gravity, environment}) {
-
-        if (!this.RaycastDown(environment[0], 5) && this.mesh.position.y > 5) {
-            this.mesh.position.y += strength * this.force - gravity 
+    Move({strength, gravity, environment, click}) {
+        
+        if (click && this.mesh.position.y > 5) {
+            this.block = false
             return
         }
-        this.mesh.position.y = 5
+        this.BlockUp(environment)
+        this.Attraction(strength, gravity)
+    }
+    Attraction(strength, gravity) {
+        
+        if ( this.mesh.position.y > 5) {
+           if (this.block)
+                this.mesh.position.y -= gravity/8
+            else 
+                this.mesh.position.y += strength * this.force - gravity
+            return true
+        } 
+        else if (this.mesh.position.y <= 5) {
+        this.mesh.position.y = 5 
+            return true
+        }
+        return false
+    }
+    BlockUp(environment) {
+        if (environment.length && this.isObstacles(environment)) {
+            this.mesh.position.y = environment[0].position.y - 5
+            environment.splice(0, 1)
+            this.block = true
+            return
+        }
 
     }
-    RaycastDown(other, number) {
-        const res = this.raycasters.down.intersectObject(other)
-        if (res.length === 0)
-            return false
-        return res[0].distance <= number
-    }
-    RaycastUp(others) {
-    }
-    RaycastFront(others) {
-        const res = this.raycasters.down.intersectObject(others)
-
+    isObstacles(environment) {
+        return environment[0].position.y - 5 < this.mesh.position.y 
     }
 }

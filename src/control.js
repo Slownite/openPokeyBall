@@ -5,6 +5,9 @@ export default class Control {
         this.shoot = false
         this.force = 0
         this.velocity = 0
+        this.mouseDown()
+        this.mouseUp()
+        this.mouseMove()
     }
     mouseDown() {
         document.addEventListener('mousedown', (event)=>{

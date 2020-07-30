@@ -11,7 +11,7 @@ export default class Setup {
         let pillar = new Pillar(50)
         gameObjects.terrain = terrain
         gameObjects.player = player
-        gameObjects.pillar = pillar.column
+        gameObjects.pillar = pillar
     }
     static Camera(width, height) {
         return new Camera(width, height)
