@@ -18,17 +18,8 @@ export default class Player {
     GetPosition() {
         return this.mesh.position
     }
-    Move({strength, gravity, environment, click}) {
+    Move({strength, gravity, environment}) {
 
-        // if (!click && !this.block ) {
-        //     this.block = true
-        //     return
-        // }
-        // if (!this.RaycastUp(environment)) {
-        //     console.log("test")
-        //     this.mesh.position.y += - this.force - gravity
-        //     return
-        // }
         if (!this.RaycastDown(environment[0], 5) && this.mesh.position.y > 5) {
             this.mesh.position.y += strength * this.force - gravity 
             return
@@ -43,10 +34,6 @@ export default class Player {
         return res[0].distance <= number
     }
     RaycastUp(others) {
-        const res = this.raycasters.down.intersectObjects(others)
-        if (res.length === 0)
-            return false
-        return res[0].distance <= 5
     }
     RaycastFront(others) {
         const res = this.raycasters.down.intersectObject(others)

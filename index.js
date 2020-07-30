@@ -14,8 +14,13 @@ function init() {
     Setup.SetMesh(gameObjects, width, height)
     control = new Control(height)
     for (const key in gameObjects) {
-       scene.add(gameObjects[key].mesh)
-       environment.push(gameObjects[key].mesh)
+        if(key === "pillar") {
+            gameObjects[key].forEach(element=> scene.add(element.mesh))
+            environment.push(gameObjects[key].forEach(element => element.mesh))
+            continue
+        }
+        scene.add(gameObjects[key].mesh)
+        environment.push(gameObjects[key].mesh)
     }
     environment.splice(1, 1)
     camera.LookAt(gameObjects.player.GetPosition())

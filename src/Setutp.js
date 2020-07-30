@@ -8,10 +8,10 @@ export default class Setup {
     static SetMesh(gameObjects, width, height) {
         let player = new Player()
         let terrain = new Terrain(width, height)
-        let pillar = new Pillar(10, 1000, 50)
+        let pillar = new Pillar(50)
         gameObjects.terrain = terrain
         gameObjects.player = player
-        gameObjects.pillar = pillar
+        gameObjects.pillar = pillar.column
     }
     static Camera(width, height) {
         return new Camera(width, height)

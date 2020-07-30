@@ -1,11 +1,23 @@
-import { BoxGeometry, MeshBasicMaterial, Mesh } from "three";
+import BreakableCube from "./breakableCube"
+import Cube from "./cube"
 
 export default class Pillar {
-    constructor(width, height, depth) {
-        const geometry = new BoxGeometry(width, height, depth)
-        const material = new MeshBasicMaterial({color: 0x00ff00})
-        this.mesh = new Mesh(geometry, material)
-        this.mesh.position.x = 100
-        this.mesh.position.y = 500
+    constructor(number) {
+        this.sizeBlock = 10
+        this.column = []
+        this.cursorBlock = 0
+        this.composedOf(0.5, number)
+
+    }
+    composedOf(breakable, number) {
+        for ( let i = 0; i < number; i++ ) {
+            if (Math.random() < breakable) {
+                this.column.push(new BreakableCube(10, 100, 50, this.cursorBlock))
+                this.cursorBlock += 100
+                continue
+            }
+            this.column.push(new Cube(10, 100, 50, this.cursorBlock, 0x00000))
+            this.cursorBlock += 100
+        }
     }
 }
