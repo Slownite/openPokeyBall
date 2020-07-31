@@ -10,33 +10,27 @@ export default class Player {
         this.raycaster = new Raycaster(this.mesh.position, new Vector3(0, 1, 0))
         this.force = 100
         this.block = false
+
     }
     GetPosition() {
         return this.mesh.position
     }
-    Move({strength, gravity, environment, click}) {
-        
-        if (click && this.mesh.position.y > 5) {
-            this.block = false
-            return
-        }
+    Move({strength, gravity, environment}) {
         this.BlockUp(environment)
         this.Attraction(strength, gravity)
     }
     Attraction(strength, gravity) {
-        
         if ( this.mesh.position.y > 5) {
            if (this.block)
-                this.mesh.position.y -= gravity/8
+                this.mesh.position.y -= gravity
             else 
                 this.mesh.position.y += strength * this.force - gravity
-            return true
+            return 
         } 
         else if (this.mesh.position.y <= 5) {
         this.mesh.position.y = 5 
-            return true
+            return 
         }
-        return false
     }
     BlockUp(environment) {
         if (environment.length && this.isObstacles(environment)) {

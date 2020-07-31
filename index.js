@@ -35,7 +35,7 @@ let delta = {
 function animate() {
     requestAnimationFrame(animate)
     camera.LookAt(gameObjects.player.GetPosition())
-    playerGameLoop({gameObjects: gameObjects, delta : delta, control: control, environment: environment})
+    playerGameLoop({player : gameObjects.player, delta : delta, control: control, environment: environment})
     camera.Move()
     renderer.render(scene, camera.GetCamera())
 
