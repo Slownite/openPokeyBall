@@ -3,7 +3,6 @@ import Terrain from "./terrain";
 import Pillar from "./Pillar";
 import {Scene, WebGLRenderer, Color} from 'three';
 import Camera from "./Camera";
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 export default class Setup {
     constructor(){
         this.scene = new Scene()
@@ -12,7 +11,7 @@ export default class Setup {
         let player = new Player()
         let terrain = new Terrain(width, height)
         console.log(this.scene)
-        let pillar = new Pillar(50, new GLTFLoader(), this.scene)
+        let pillar = new Pillar(50)
         gameObjects.terrain = terrain
         gameObjects.player = player
         gameObjects.pillar = pillar
