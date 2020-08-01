@@ -27,6 +27,7 @@ function init() {
         scene.add(gameObjects[key].mesh)
     }
     camera.LookAt(gameObjects.player.GetPosition())
+    window.addEventListener('resize', onWindowResize, false)
 }
 
 let delta = {
@@ -40,6 +41,13 @@ function animate() {
     playerGameLoop({player : gameObjects.player, delta : delta, control: control, breakableBlock: breakableBlock, targets: targets})
     camera.Move()
     renderer.render(scene, camera.GetCamera())
+}
+function onWindowResize() {
+    width = window.innerWidth
+    height = window.innerHeight
+    camera.camera.aspect = width / height
+    camera.camera.updateProjectionMatrix()
+    renderer.setSize( window.innerWidth, window.innerHeight )
 }
 
 init()
