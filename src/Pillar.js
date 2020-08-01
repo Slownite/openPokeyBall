@@ -9,10 +9,10 @@ export default class Pillar {
         this.breakBlocks = []
         this.targets = []
         this.cursorBlock = 0
-        this.composedOf(0.5, 0.1, number)
+        this.composedOf(0.5, number)
 
     }
-    composedOf(breakable, target, number) {
+    composedOf(breakable, number) {
         var breakable = false
         var isTarget = false
         for ( let i = 0; i < number; i++ ) {
@@ -21,17 +21,13 @@ export default class Pillar {
                 breakable = false
                 continue
             }
-            // else if (Math.random() < target && i > Math.round(number/10) && isTarget) {
-            //     this.targets.push(new Target(30))
-            //     isTarget = false
-            //     continue
-            // }
             isTarget = true
             breakable = true
             this.column.push(new Cube(10, 100, 50, this.cursorBlock, 0x00000))
             this.cursorBlock += 100
+            this.targets.push(new Target(300))
         }
-        console.log(this.breakBlocks)
+
     }
    
 }
