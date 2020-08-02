@@ -64,6 +64,6 @@ export default class Player {
        }
     }
     isCoin(element) {
-        return this.mesh.position.y === element.mesh.position.y // || this.mesh.position.y > element.mesh.position.y - 4
+        return this.mesh.position.y > element.mesh.position.y - 5 // || this.mesh.position.y > element.mesh.position.y - 4
     }
 }
