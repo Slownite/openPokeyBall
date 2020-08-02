@@ -8,7 +8,9 @@ export default class BreakableCube extends Cube {
 
     }
     destroy() {
-        // this.mesh.material.color.setHex(0xff0000)
-       this.mesh.material.visible = false
+        setTimeout(()=>{
+            this.mesh.material.visible = false
+        }, 1000)
+           
     }
 } 

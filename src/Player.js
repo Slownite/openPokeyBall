@@ -13,6 +13,8 @@ export default class Player {
 
         this.mesh.position.y = 30
         this.mesh.position.x = 30
+        this.lost = false
+        this.win = false
         this.force = 20
         this.block = false
         this.ontarget = false
@@ -33,10 +35,15 @@ export default class Player {
         this.animate()
     }
     Attraction(strength, gravity) {
-        if (this.mesh.position.y <= 5 || this.mesh.position.y > 5000) {
+        if (this.mesh.position.y <= 5) {
             this.mesh.position.y = 5 
-                return 
+            this.lost = true
+            return 
             }
+        else if (this.mesh.position.y > 5000) {
+            this.win = true
+            return
+        }
         else if ( this.mesh.position.y > 5) {
            if (this.block)
                 this.mesh.position.y -= gravity
@@ -66,12 +73,12 @@ export default class Player {
         if (coins.length && this.isCoin(coins[0])) {
             this.score += 10
             coins[0].destroy()
-            console.log(this.score)
+
             coins.splice(0, 1)
        }
     }
     isCoin(element) {
-        return this.mesh.position.y > element.mesh.position.y - 5 // || this.mesh.position.y > element.mesh.position.y - 4
+        return this.mesh.position.y > element.mesh.position.y - 5
     }
     animate() {
         this.mesh.children[1].rotation.z += 0.5

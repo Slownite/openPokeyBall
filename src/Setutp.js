@@ -10,7 +10,6 @@ export default class Setup {
      SetMesh(gameObjects, width, height) {
         let player = new Player()
         let terrain = new Terrain(10000, 10000)
-        console.log(this.scene)
         let pillar = new Pillar(50)
         gameObjects.terrain = terrain
         gameObjects.player = player

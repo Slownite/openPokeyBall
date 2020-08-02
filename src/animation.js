@@ -22,3 +22,7 @@ export default function playerGameLoop({player, delta, control, breakableBlock, 
         element.animation()  
    })
 }
+
+function loose() {
+
+}

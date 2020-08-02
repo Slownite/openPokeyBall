@@ -61,7 +61,6 @@ function init() {
 	updateSun();
     scene.add(light)
     scene.add(ambiant)
-
 }
 
 function updateSun() {
@@ -84,10 +83,14 @@ let delta = {
 let i = 2
 
 function animate() {
-    requestAnimationFrame(animate)
+    if (!gameObjects.player.lost) {
+        if (!gameObjects.player.win)
+            requestAnimationFrame(animate)
+    }
     camera.LookAt(gameObjects.player.GetPosition())
     playerGameLoop({player : gameObjects.player, delta : delta, control: control, breakableBlock: breakableBlock, targets: targets, coins: coins})
     camera.Move()
+    onLoose()
     pos = camera.camera.position
     light.position.set(pos.x + 10, pos.y + 10, pos.z + 10)
     renderer.render(scene, camera.GetCamera())
@@ -99,6 +102,10 @@ function onWindowResize() {
     camera.camera.updateProjectionMatrix()
     renderer.setSize( window.innerWidth, window.innerHeight )
 }
-
+function onLoose() {
+    if (gameObjects.player.lost || gameObjects.player.win) {
+        location.reload()        
+    }
+}
 init()
 animate()

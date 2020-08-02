@@ -35,20 +35,17 @@ export default class Pillar {
             isTarget = true
             breakable = true
             if (this.oppositeColor) {
-                this.column.push(new Cube(10, 100, 50, this.cursorBlock, 0x00000))
+                this.column.push(new Cube(50, 100, 50, this.cursorBlock, 0x00000))
                 this.oppositeColor = false
             }
             else {
-                this.column.push(new Cube(10, 100, 50, this.cursorBlock, 0xffffff))
+                this.column.push(new Cube(50, 100, 50, this.cursorBlock, 0xffffff))
                 this.oppositeColor = true
             }
     
             this.cursorBlock += 100
             this.targets.push(new Target(300))
         }
-        console.log(this.breakBlocks.length)
-      //  this.column[this.column.length - 1].mesh.material = new TextureLoader().load('./../drive-download-20200316T111959Z-001/Sprites/checker.png')
-
     }
    
 }
