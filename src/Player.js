@@ -11,13 +11,15 @@ export default class Player {
         this.block = false
         this.ontarget = false
         this.superSpeed = false
+        this.score = 0
 
     }
     GetPosition() {
         return this.mesh.position
     }
-    Move({strength, gravity, breakableBlock}) {
-        this.superSpeed ? this.force = 80 : this.force = 20 
+    Move({strength, gravity, breakableBlock, coins}) {
+        this.superSpeed ? this.force = 80 : this.force = 20
+        this.TakeCoin({coins : coins})
        this.BlockUp({breakableBlock : breakableBlock})
         this.Attraction(strength, gravity)
     }
@@ -49,5 +51,19 @@ export default class Player {
     }
     isObstacles(element) {
         return element.position.y - 5 < this.mesh.position.y 
+    }
+
+    TakeCoin({coins}) {
+        console.log("in function")
+        if (coins.length && this.isCoin(coins[0])) {
+            console.log("isCoin")
+            this.score += 10
+            coins[0].destroy()
+            console.log(this.score)
+            coins.splice(0, 1)
+       }
+    }
+    isCoin(element) {
+        return this.mesh.position.y === element.mesh.position.y // || this.mesh.position.y > element.mesh.position.y - 4
     }
 }
