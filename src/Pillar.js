@@ -13,14 +13,14 @@ export default class Pillar {
         this.coins = []
         this.oppositeColor = true
         this.cursorBlock = 0
-        this.composedOf(0.5, number)
+        this.composedOf(0.1, number)
 
     }
-    composedOf(breakable, number) {
+    composedOf(probBreakBlocks, number) {
         var breakable = false
         var isTarget = false
         for ( let i = 0; i < number; i++ ) {
-            if (Math.random() < breakable && i > Math.round(number/10) && breakable) {
+            if (Math.random() < probBreakBlocks && i > 10 && breakable) {
 
                 this.breakBlocks.push(new BreakableCube(100, 20, 50, this.cursorBlock))
                 breakable = false
@@ -46,7 +46,7 @@ export default class Pillar {
             this.cursorBlock += 100
             this.targets.push(new Target(300))
         }
-        console.log(this.column)
+        console.log(this.breakBlocks.length)
       //  this.column[this.column.length - 1].mesh.material = new TextureLoader().load('./../drive-download-20200316T111959Z-001/Sprites/checker.png')
 
     }

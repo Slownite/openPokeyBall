@@ -1,9 +1,7 @@
 const { default: Player } = require("./Player");
 
 export default function playerGameLoop({player, delta, control, breakableBlock, targets, coins}) {
-   coins.forEach(element => {
-        element.animation()  
-   })
+
     if (control.pinned) {
         player.superSpeed = false
         delta.value = 0
@@ -17,6 +15,10 @@ export default function playerGameLoop({player, delta, control, breakableBlock, 
       
     }
     else if (control.charge) {
+
         delta.value = 0
     }
+    coins.forEach(element => {
+        element.animation()  
+   })
 }

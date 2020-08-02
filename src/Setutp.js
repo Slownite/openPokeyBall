@@ -9,7 +9,7 @@ export default class Setup {
     }
      SetMesh(gameObjects, width, height) {
         let player = new Player()
-        let terrain = new Terrain(width, height)
+        let terrain = new Terrain(10000, 10000)
         console.log(this.scene)
         let pillar = new Pillar(50)
         gameObjects.terrain = terrain
@@ -21,8 +21,10 @@ export default class Setup {
     }
     static Renderer(width, height) {
         let renderer = new WebGLRenderer({antialias: true})
+        renderer.setPixelRatio( window.devicePixelRatio );
         renderer.setSize(width, height)
         document.body.appendChild(renderer.domElement)
+        renderer.shadowMap = true
         return renderer
     }
     Scene() {
