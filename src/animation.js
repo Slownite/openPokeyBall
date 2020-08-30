@@ -1,7 +1,7 @@
 const { default: Player } = require("./Player");
 
 export default function playerGameLoop({player, delta, control, breakableBlock, targets, coins}) {
-
+//Game Loop
     if (control.pinned) {
         player.superSpeed = false
         delta.value = 0

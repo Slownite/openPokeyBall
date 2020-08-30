@@ -40,7 +40,7 @@ export default class Player {
             this.lost = true
             return 
             }
-        else if (this.mesh.position.y > 5000) {
+        else if (this.mesh.position.y > 4950) {
             this.win = true
             return
         }

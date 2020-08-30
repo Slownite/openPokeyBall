@@ -13,7 +13,7 @@ export default class Control {
     }
 
     mouseDown() {
-        document.addEventListener('mousedown', (event)=>{
+        document.addEventListener('pointerdown', (event)=>{
             this.move = false
             this.pinned = false
             this.charge = true
@@ -24,7 +24,7 @@ export default class Control {
         , false)
     }
     mouseUp() {
-        document.addEventListener('mouseup', ()=>{
+        document.addEventListener('pointerup', ()=>{
             let elapse = new Date().getTime() - this.start
             if (elapse < 300) {
                 this.move = false
@@ -39,7 +39,7 @@ export default class Control {
         false)
     }
     mouseMove() {
-        document.addEventListener('mousemove', (event)=> {
+        document.addEventListener('pointermove', (event)=> {
            if ( event.clientY < this.startPoint) {
                 this.force = 0
                 this.velocity = 0
